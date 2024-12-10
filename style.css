@@ -1,0 +1,432 @@
+/* Thêm import font từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Pacifico&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
+
+/* Thêm @font-face để import font từ local */
+@font-face {
+    font-family: 'Playwrite Hrvatska Lijeva';
+    src: url('./fonts/PlaywriteHrvatskaLijeva.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: #cc0000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.christmas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Card styling */
+.card {
+    position: relative;
+    width: 60%;
+    max-width: 600px;
+    height: 300px;
+    background: white;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: cardFloat 3s ease-in-out infinite;
+    z-index: 2;
+    opacity: 0;
+    animation: cardFloat 3s ease-in-out infinite, fadeIn 1s ease-in forwards 2s;
+}
+
+h1 {
+    position: absolute;
+    top: -7.5%;
+    width: 100%;
+    text-align: center;
+    color: #cc0000;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 4em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Present box styling */
+.present-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    transform-style: preserve-3d;
+}
+
+.lid {
+    width: 150px;
+    height: 150px;
+    background: #ff4444;
+    position: relative;
+    transform-origin: bottom;
+    animation: openLid 4s ease-in-out infinite;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background: #ff6666;
+    position: absolute;
+    top: 0;
+    transform: translateY(100%) rotateX(0deg);
+}
+
+.bow {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ffcc00;
+    top: -30px;
+    left: 45px;
+    border-radius: 50%;
+    transform: rotateX(0deg);
+}
+
+/* Animations */
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0px) rotateX(10deg); }
+    50% { transform: translateY(-20px) rotateX(5deg); }
+}
+
+@keyframes openLid {
+    0%, 100% { transform: rotateX(0deg); }
+    50% { transform: rotateX(-60deg); }
+}
+
+/* Snow effect */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Decorations */
+.decorations {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.mini-tree {
+    width: 50px;
+    height: 80px;
+    background: #2d5a27;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.mini-gift {
+    width: 30px;
+    height: 30px;
+    background: #ff4444;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    50% { transform: translateY(-10px); }
+}
+
+/* Santa animation */
+.santa {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: url('./img/SantaClaus.png') no-repeat;
+    background-size: contain;
+    bottom: 5px;
+    animation: santaRun 15s linear infinite, santaBounce 1s ease-in-out infinite;
+    z-index: 0;
+    opacity: 0;
+    animation: santaRun 15s linear infinite, santaBounce 1s ease-in-out infinite, fadeIn 1s ease-in forwards 2.5s;
+}
+
+/* Slogan và nền lớn hơn */
+.santa::before {
+    content: 'Bắt đầu lại với anh nhé';
+    position: absolute;
+    left: -400px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #cc0000;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    font-weight: bold;
+    background-color: white;
+    padding: 12px 40px;
+    clip-path: polygon(0 0, 100% 0, 90% 50%, 100% 100%, 0 100%, 10% 50%);
+    width: 325px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    animation: flagWave 2s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+/* Animation cho lá cờ */
+@keyframes flagWave {
+    0%, 100% {
+        transform: translateY(-50%) skewX(0deg);
+    }
+    50% {
+        transform: translateY(-50%) skewX(-5deg);
+    }
+}
+
+@keyframes santaBounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes santaRun {
+    0% {
+        left: -150px;
+    }
+    100% {
+        left: 125%;
+    }
+}
+
+/* Photo Gallery styling */
+.photo-gallery {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    top: 55%;
+    display: flex;
+    gap: 20px;
+    animation: slideLeft 30s linear infinite;
+    z-index: 1;
+    opacity: 0;
+    animation: slideLeft 30s linear infinite, fadeIn 1s ease-in forwards 1.5s;
+}
+
+.photo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: float 4s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.photo1, .photo2, .photo3, .photo4,
+.photo5, .photo6, .photo7, .photo8 {
+    position: relative;
+}
+
+/* Animation trượt sang trái mượt mà */
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Animation float mượt mà */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+.message {
+    position: absolute;
+    top: 27.5%;
+    width: 100%;
+    text-align: center;
+    color: #cc0000;
+    font-family: 'Manrope', sans-serif;
+    font-size: 2em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.love-message {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #cc0000;
+    font-family: 'Satisfy', serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Pine Tree styling */
+.pine-tree {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: url('./img/PineTree.png') no-repeat;
+    background-size: contain;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    animation: treeFloat 3s ease-in-out infinite;
+    opacity: 0;
+    animation: treeFloat 3s ease-in-out infinite, fadeIn 1s ease-in forwards 0.5s;
+}
+
+/* Animation cho cây thông */
+@keyframes treeFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Merry Christmas image styling */
+.merry-christmas-img {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: url('./img/MerryChristmas.png') no-repeat;
+    background-size: contain;
+    top: -75px;
+    right: -125px;
+    z-index: 1;
+    animation: mcFloat 3s ease-in-out infinite;
+    opacity: 0;
+    animation: mcFloat 3s ease-in-out infinite, fadeIn 1s ease-in forwards 1s;
+}
+
+/* Animation cho Merry Christmas image */
+@keyframes mcFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.present-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #cc0000;
+    z-index: 1000;
+}
+
+.present {
+    position: relative;
+    width: 750px;
+    height: 750px;
+    cursor: pointer;
+    background: url('./img/Gift.png') no-repeat center;
+    background-size: contain;
+    transition: all 0.5s ease;
+    animation: shakeGift 2s ease-in-out infinite;
+}
+
+.present:hover {
+    transform: translateY(-20px);
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes shakeGift {
+    0% { transform: translateY(-50px) rotate(0deg); }
+    10% { transform: translateY(-50px) rotate(-4deg); }
+    20% { transform: translateY(-50px) rotate(4deg); }
+    30% { transform: translateY(-50px) rotate(-3deg); }
+    40% { transform: translateY(-50px) rotate(3deg); }
+    50% { transform: translateY(-50px) rotate(-2deg); }
+    60% { transform: translateY(-50px) rotate(2deg); }
+    70% { transform: translateY(-50px) rotate(-2deg); }
+    80% { transform: translateY(-50px) rotate(2deg); }
+    90% { transform: translateY(-50px) rotate(-1deg); }
+    100% { transform: translateY(-50px) rotate(0deg); }
+}
+
+.present-text {
+    position: absolute;
+    bottom: 150px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.present-guide {
+    position: absolute;
+    bottom: 75px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.75em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.sparkle {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkleAnim 10s ease-out forwards;
+    z-index: 1;
+}
+
+@keyframes sparkleAnim {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+}
+
+/* Thêm các animation mới */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
